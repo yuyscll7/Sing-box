@@ -550,6 +550,17 @@ install_keepalive () {
     $COMMAND "${keep_path}/app.js" "$app_file_url"
 
     cat > ${keep_path}/.env <<EOF
+UUID=${UUID}
+CFIP=${CFIP}
+CFPORT=${CFPORT}
+#SUB_TOKEN=${SUB_TOKEN:-${UUID:0:8}}
+API_SUB_URL=${UPLOAD_URL}
+TELEGRAM_CHAT_ID=${CHAT_ID}
+TELEGRAM_BOT_TOKEN=${BOT_TOKEN}
+NEZHA_SERVER=${NEZHA_SERVER}
+NEZHA_PORT=${NEZHA_PORT}
+NEZHA_KEY=${NEZHA_KEY}
+ARGO_DOMAIN=${ARGO_DOMAIN}
 ARGO_AUTH=$([[ -z "$ARGO_AUTH" ]] && echo "" || ([[ "$ARGO_AUTH" =~ ^\{.* ]] && echo "'$ARGO_AUTH'" || echo "$ARGO_AUTH"))
 EOF
     devil www add keep.${USERNAME}.serv00.net nodejs /usr/local/bin/node18 > /dev/null 2>&1
