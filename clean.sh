@@ -11,26 +11,26 @@ DOMAIN2="keep.${USER}.serv00.net"
 echo "Deleting website configuration for $DOMAIN1..."
 devil www del "$DOMAIN1"
 if [ $? -eq 0 ]; then
-    echo "Successfully deleted website configuration for $DOMAIN1"
+    echo "[Ok] Domain deleted"
 else
-    echo "Failed to delete website configuration for $DOMAIN1"
+    echo "[Failed] Failed to delete domain $DOMAIN1"
 fi
 
 echo "Deleting website configuration for $DOMAIN2..."
 devil www del "$DOMAIN2"
 if [ $? -eq 0 ]; then
-    echo "Successfully deleted website configuration for $DOMAIN2"
+    echo "[Ok] Domain deleted"
 else
-    echo "Failed to delete website configuration for $DOMAIN2"
+    echo "[Failed] Failed to delete domain $DOMAIN2"
 fi
 
 # 递归删除 /home/$USER/domains 目录下的所有内容
 echo "Removing all contents in /home/$USER/domains/..."
 rm -rf "/home/$USER/domains/*"
 if [ $? -eq 0 ]; then
-    echo "Successfully removed all contents in /home/$USER/domains/"
+    echo "[Ok] Contents removed"
 else
-    echo "Failed to remove all contents in /home/$USER/domains/"
+    echo "[Failed] Failed to remove contents in /home/$USER/domains/"
 fi
 
 # 启用扩展模式匹配和隐藏文件匹配
@@ -40,9 +40,9 @@ shopt -s extglob dotglob
 echo "Removing all contents in /home/$USER except domains, mail, repo, and backups..."
 rm -rf "/home/$USER/!(domains|mail|repo|backups)"
 if [ $? -eq 0 ]; then
-    echo "Successfully removed all contents in /home/$USER except domains, mail, repo, and backups"
+    echo "[Ok] Contents removed"
 else
-    echo "Failed to remove all contents in /home/$USER except domains, mail, repo, and backups"
+    echo "[Failed] Failed to remove contents in /home/$USER except domains, mail, repo, and backups"
 fi
 
 
